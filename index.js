@@ -35,13 +35,17 @@ var colors = require("colors");
 
 fs.readdir(".", "utf-8", function(err, files) {
   errHandler(err);
-  files.forEach(function(entry) {
-    fs.appendFile("./tekst.txt", entry + "\r\n", function(err) {
-      errHandler(err);
-    });
-  });
+  writeToFile(files);
   console.log("Zapisano!".red);
 });
+
+function writeToFile(files) {
+	files.forEach(function (entry) {
+		fs.appendFile("./tekst.txt", entry + "\r\n", function (err) {
+			errHandler(err);
+		});
+	});
+}
 
 function errHandler(err) {
   if (err) throw err;

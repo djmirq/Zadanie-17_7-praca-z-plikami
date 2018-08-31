@@ -1,12 +1,12 @@
-var fs = require('fs');
+var fs = require("fs");
 //var StatMode = require('stat-mode');
-var colors = require('colors');
+var colors = require("colors");
 
 //fs.stat('./cat.jpg', function(err, stats) {
 //    var statMode = new StatMode(stats);
 //    console.log(statMode.toString());
 //});
- 
+
 //fs.readFile('./tekst.txt', function(err, data) {
 //    console.log(data);
 //});
@@ -19,7 +19,7 @@ var colors = require('colors');
 //    if (err) throw err; // jeśli pojawi się błąd, wyrzuć wyjątek
 //    console.log('Zapisano!');
 //});
- 
+
 //fs.readFile('./tekst.txt', 'utf-8', function(err, data) {
 //    console.log('Dane przed zapisem!'.blue);
 //    console.log(data);
@@ -33,14 +33,16 @@ var colors = require('colors');
 //    });
 //});
 
-fs.readdir('.', 'utf-8', function(err, files) {
-	files.forEach(function(entry) {
-	if (err) throw err;
-		fs.appendFile('./tekst.txt', entry + '\r\n', function(err) {
-			if (err) throw err;
-		});
-	});
-	console.log('Zapisano!'.red);	
+fs.readdir(".", "utf-8", function(err, files) {
+  errHandler(err);
+  files.forEach(function(entry) {
+    fs.appendFile("./tekst.txt", entry + "\r\n", function(err) {
+      errHandler(err);
+    });
+  });
+  console.log("Zapisano!".red);
 });
-	
 
+function errHandler(err) {
+  if (err) throw err;
+}

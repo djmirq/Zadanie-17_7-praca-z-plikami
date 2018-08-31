@@ -33,15 +33,17 @@ var colors = require("colors");
 //    });
 //});
 
+const fileName = "./tekst.txt";
+
 fs.readdir(".", "utf-8", function(err, files) {
   errHandler(err);
   writeToFile(files);
   console.log("Zapisano!".red);
 });
-
+ 
 function writeToFile(files) {
 	files.forEach(function (entry) {
-		fs.appendFile("./tekst.txt", entry + "\r\n", function (err) {
+		fs.appendFile(fileName, entry + "\r\n", function (err) {
 			errHandler(err);
 		});
 	});
